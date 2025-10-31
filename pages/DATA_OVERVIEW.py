@@ -1,12 +1,9 @@
 import streamlit as st
 import pandas as pd
-from utils import set_global_header
+
 
 st.set_page_config(page_title="DATA OVERVIEW", page_icon="📄", layout="wide")
 st.balloons()
-
-# 🟢 Call global header
-set_global_header()
 
 st.title("📄 Data Overview")
 uploaded_file = st.file_uploader("Upload your CSV file here", type=["csv"])
