@@ -3,66 +3,38 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-st.set_page_config(page_title="DATA VISUALIZATION", page_icon="📊", layout="wide")
+st.set_page_config(page_title="📊 Data Visualization", page_icon="📈", layout="wide")
+st.title("📈 Data Visualization Dashboard")
 
-st.title("📊 Data Visualization Hub")
-
-# ✅ Check if data exists
+# Load data from session_state
 if "df" not in st.session_state:
-    st.warning("⚠️ Please upload a dataset first in the Data Overview page.")
-    st.stop()
+    st.warning("Please upload your data in the 'Data Overview' page first.")
+else:
+    df = pd.read_csv(st.session_state["df"]) if isinstance(st.session_state["df"], str) else pd.read_csv(st.session_state["df"])
 
-df = st.session_state["df"]
+    chart_type = st.selectbox("Select chart type", ["bar_chart", "line_chart", "scatter_plot", "pie_chart"])
+    x_col = st.selectbox("Select X-axis", df.columns)
+    y_col = None
+    if chart_type != "pie_chart":
+        y_col = st.selectbox("Select Y-axis", df.columns)
 
-# Sidebar controls
-st.sidebar.header("⚙️ Visualization Controls")
+    colors = sns.color_palette("pastel")  # or try "coolwarm", "mako", etc.
 
-# Column selections
-numeric_cols = df.select_dtypes(include=["int64", "float64"]).columns.tolist()
-categorical_cols = df.select_dtypes(exclude=["int64", "float64"]).columns.tolist()
+    fig, ax = plt.subplots(figsize=(8, 5))
 
-chart_type = st.sidebar.selectbox(
-    "Select chart type",
-    ["Scatter Plot", "Line Plot", "Bar Plot", "Box Plot", "Histogram", "Pairplot", "Heatmap"]
-)
+    if chart_type == "bar_chart":
+        sns.barplot(data=df, x=x_col, y=y_col, palette=colors, ax=ax)
 
-x_col = st.sidebar.selectbox("X-axis", options=df.columns)
-y_col = st.sidebar.selectbox("Y-axis", options=numeric_cols)
-hue_col = st.sidebar.multiselect("Hue (optional)", options=categorical_cols)
+    elif chart_type == "line_chart":
+        sns.lineplot(data=df, x=x_col, y=y_col, palette=colors, ax=ax)
 
-# Color theme
-sns.set_style("whitegrid")
-plt.rcParams.update({'axes.titlesize': 14, 'axes.labelsize': 12})
+    elif chart_type == "scatter_plot":
+        sns.scatterplot(data=df, x=x_col, y=y_col, palette=colors, ax=ax)
 
-st.subheader(f"📈 {chart_type}")
+    elif chart_type == "pie_chart":
+        # For pie, pick one column (categorical) and show distribution
+        pie_data = df[x_col].value_counts()
+        ax.pie(pie_data, labels=pie_data.index, colors=colors[:len(pie_data)], autopct="%.0f%%")
+        ax.set_title(f"Pie Chart of {x_col}")
 
-# Draw plot based on selection
-fig, ax = plt.subplots(figsize=(10, 6))
-
-if chart_type == "Scatter Plot":
-    sns.scatterplot(data=df, x=x_col, y=y_col, hue=hue_col[0] if hue_col else None, ax=ax)
-
-elif chart_type == "Line Plot":
-    sns.lineplot(data=df, x=x_col, y=y_col, hue=hue_col[0] if hue_col else None, ax=ax)
-
-elif chart_type == "Bar Plot":
-    sns.barplot(data=df, x=x_col, y=y_col, hue=hue_col[0] if hue_col else None, ax=ax)
-
-elif chart_type == "Box Plot":
-    sns.boxplot(data=df, x=x_col, y=y_col, hue=hue_col[0] if hue_col else None, ax=ax)
-
-elif chart_type == "Histogram":
-    sns.histplot(data=df, x=y_col, kde=True, ax=ax)
-
-elif chart_type == "Pairplot":
-    st.info("Generating Pairplot — might take a few seconds...")
-    fig = sns.pairplot(df[numeric_cols])
     st.pyplot(fig)
-    st.stop()
-
-elif chart_type == "Heatmap":
-    st.info("Showing Correlation Heatmap")
-    corr = df[numeric_cols].corr()
-    sns.heatmap(corr, annot=True, cmap="coolwarm", ax=ax)
-
-st.pyplot(fig)
