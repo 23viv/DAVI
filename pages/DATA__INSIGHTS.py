@@ -24,6 +24,10 @@ else:
 
     if missing_data.sum() == 0:
         st.success("No missing values found! 🎉")
+    
+    st.subheader("👀 Data Preview")
+    st.dataframe(df.head())
+
 
     # ---- Correlation Heatmap ----
     st.subheader("📊 Correlation Heatmap")
@@ -36,16 +40,8 @@ else:
     else:
         st.info("No numeric columns available for correlation analysis.")
 
-    # ---- Top 5 Correlations ----
-    st.subheader("💡 Top 5 Strongest Correlations")
-    corr_matrix = numeric_df.corr().abs()
-    upper_tri = corr_matrix.where(~pd.np.tril(pd.np.ones(corr_matrix.shape)).astype(bool))
-    sorted_corrs = (
-        upper_tri.unstack().dropna().sort_values(ascending=False).head(5)
-    )
-
-    st.write(sorted_corrs)
 
     # ---- Data Summary ----
     st.subheader("🧾 Summary Statistics")
+    
     st.write(df.describe())
