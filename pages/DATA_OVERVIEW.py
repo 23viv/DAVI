@@ -5,7 +5,6 @@ import pandas as pd
 st.set_page_config(page_title="DATA OVERVIEW", page_icon="📄", layout="wide")
 st.balloons()
 
-
 st.title("📄 Data Overview")
 uploaded_file = st.file_uploader("Upload your CSV file here", type=["csv"])
 
