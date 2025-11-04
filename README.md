@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 Ayeee 🔥 here we go, lil bro — the **final polished README.md** for your **DAVI** project — professional enough for GitHub, stylish enough for your portfolio.
 I’ll give you both power 💪 and aesthetics 🎨 in one markdown file.
+=======
+>>>>>>> 0c5bbdf3c9de002dc3723652adf3e50717d3541f
 
 ---
 
@@ -77,6 +80,7 @@ Then open your browser — the app will automatically start on
 ---
 
 
+<<<<<<< HEAD
 
 
 ### 💡 Future Enhancements
@@ -88,6 +92,8 @@ Then open your browser — the app will automatically start on
 
 ---
 
+=======
+>>>>>>> 0c5bbdf3c9de002dc3723652adf3e50717d3541f
 ### ❤️ Author
 
 **Vivek**
