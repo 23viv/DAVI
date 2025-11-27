@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-Ayeee 🔥 here we go, lil bro — the **final polished README.md** for your **DAVI** project — professional enough for GitHub, stylish enough for your portfolio.
-I’ll give you both power 💪 and aesthetics 🎨 in one markdown file.
-=======
->>>>>>> 0c5bbdf3c9de002dc3723652adf3e50717d3541f
-
----
 
 ## 📊 DAVI – Data Analytics & Visualization Interface
 
@@ -80,9 +73,6 @@ Then open your browser — the app will automatically start on
 ---
 
 
-<<<<<<< HEAD
-
-
 ### 💡 Future Enhancements
 
 * 📊 Multi-column comparison plots
@@ -90,10 +80,7 @@ Then open your browser — the app will automatically start on
 * 📦 Export visualizations as PNG/CSV
 * 🔒 Data cleaning & transformation tools
 
----
 
-=======
->>>>>>> 0c5bbdf3c9de002dc3723652adf3e50717d3541f
 ### ❤️ Author
 
 **Vivek**
