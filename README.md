@@ -88,7 +88,3 @@ AI/ML Engineer | Data Analyst | Full-Stack Dreamer
 Built with 💻, ☕, and a little chaos ⚡
 
 > “Visualize smarter, not harder.” — *DAVI Motto*
-
----
-
-Would you like me to add the **dark theme config file** (`.streamlit/config.toml`) next so your dashboard looks aesthetic and hacker-vibe sleek by default? 😏
